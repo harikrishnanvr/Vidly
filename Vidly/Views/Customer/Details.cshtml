@@ -1,4 +1,4 @@
-﻿
+﻿@model Vidly.Models.Customer
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,5 +6,7 @@
 
 <h2>Customers</h2>
 
-<p> @ViewBag.customerName </p>
+<p>@Model.Name</p>
+
+@*<p> @ViewBag.customerName </p>*@
 

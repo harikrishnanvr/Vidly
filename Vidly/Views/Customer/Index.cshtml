@@ -1,15 +1,35 @@
-﻿@model Vidly.Models.Customer
+﻿@*@model Vidly.Models.Customer*@
+@model IEnumerable<Vidly.Models.Customer>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Customers</h2>
+
+<table>
+    <thead></thead>
+    <tbody>
+        @foreach (var cust in Model)
+        {
+            <tr>
+
+                <td>@Html.ActionLink(@cust.Name, "Details", "Customer", new { id = cust.Id.ToString() }, null)</td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+
 <ul>
-    @foreach (var cust in Model.Customers)
+    
+
+    @*@foreach (var cust in Model.Customers)
     {
-        @*<li> @cust.Name </li>*@
+        @*<li> @cust.Name </li>
 
         <li>@Html.ActionLink(@cust.Name, "Details", "Customer", new { id = cust.Id.ToString() },null)</li>
-    }
+    }*@
 </ul>
