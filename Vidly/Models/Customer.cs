@@ -18,12 +18,12 @@ namespace Vidly.Models
 
         [Display(Name="Date of Birth")]
         public DateTime? Birthdate { get; set; }
-
-        [Display(Name="Membership Type")]
+       
         public MembershipType MembershipType { get; set; }
 
+        [Display(Name = "Membership Type")]
         public byte MembershipTypeId { get; set; }
 
-        public IEnumerable<Customer> Customers { get; set; }
+        //public IEnumerable<Customer> Customers { get; set; }
     }
 }

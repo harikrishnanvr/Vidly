@@ -43,11 +43,13 @@
 
     @*<label for="Birthdate">DOB</label>*@
 
-    @Html.LabelFor(m => m.Customer.MembershipType)
-    @Html.DropDownListFor(m => m.MembershipType, new SelectList(Model.MembershipType,"Id","Name"), "Select Membership Type", new { @class = "form-control" })
+    @Html.LabelFor(m => m.Customer.MembershipTypeId)
+    @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipType,"Id","Name"), "Select Membership Type", new { @class = "form-control" })
 
 </div>
 
+
+<button type="submit" class="btn btn-primary">Save</button>
 
 }
 
