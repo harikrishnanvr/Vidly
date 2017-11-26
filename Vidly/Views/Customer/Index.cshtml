@@ -19,7 +19,7 @@
         {
             <tr>
 
-                <td>@Html.ActionLink(@cust.Name, "Details", "Customer", new { id = cust.Id.ToString() }, null)</td>
+                <td>@Html.ActionLink(@cust.Name, "Edit", "Customer", new { id = cust.Id }, null)</td>
                 <td>@cust.MembershipType.Name</td>
             </tr>
         }
