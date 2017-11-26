@@ -7,7 +7,7 @@
 <h2>New Customer</h2>
 
 @** Begining form . it is enclosed in using statement to dispose at the end  *@
-@using (Html.BeginForm("Create", "Customer"))
+@using (Html.BeginForm("Save", "Customer"))
 {
 
     <div class="form-group">
@@ -33,11 +33,7 @@
 
 </div>*@
 
-<div class="checkbox">
-    <label>
-       @Html.CheckBoxFor(m=>m.Customer.IsSubscribedToNewsletter) Subscribe To Newsletter ?
-    </label>
-</div>
+
 
 <div class="form-group">
 
@@ -49,6 +45,13 @@
 </div>
 
 
+<div class="checkbox">
+    <label>
+        @Html.CheckBoxFor(m => m.Customer.IsSubscribedToNewsletter) Subscribe To Newsletter ?
+    </label>
+</div>
+
+@Html.HiddenFor(m =>m.Customer.Id)
 <button type="submit" class="btn btn-primary">Save</button>
 
 }

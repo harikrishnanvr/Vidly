@@ -35,10 +35,26 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(CustomerFormViewModel viewsModel)
+        public ActionResult Save(CustomerFormViewModel viewsModel)
         {
-            _context.Customers.Add(viewsModel.Customer);
+
+            if(viewsModel.Customer.Id==0)
+            {
+                _context.Customers.Add(viewsModel.Customer);
+            }
+            else
+            {
+
+                var CustomerInDB = _context.Customers.Single(c => c.Id == viewsModel.Customer.Id);
+
+                CustomerInDB.Name = viewsModel.Customer.Name;
+                CustomerInDB.Birthdate = viewsModel.Customer.Birthdate;
+                CustomerInDB.MembershipTypeId = viewsModel.Customer.MembershipTypeId;
+                CustomerInDB.IsSubscribedToNewsletter = viewsModel.Customer.IsSubscribedToNewsletter;
+            }
+
             _context.SaveChanges();
+
             return RedirectToAction("Index", "Customer");
         }
 
