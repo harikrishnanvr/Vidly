@@ -6,6 +6,8 @@ using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.Data.Entity.Infrastructure;
 
 namespace Vidly.Controllers
 {
@@ -22,10 +24,47 @@ namespace Vidly.Controllers
             _dbcontext.Dispose();
         }
 
-        
+        [HttpPost]
+        public ActionResult Save(MovieFormViewModel objViewModel)
+        {
+            if(objViewModel.Movie.Id==0)
+            {
+                _dbcontext.Movies.Add(objViewModel.Movie);
+            }
+            else
+            {
+                var MovieinDB = _dbcontext.Movies.Single(c => c.Id == objViewModel.Movie.Id);
+                MovieinDB.Name = objViewModel.Movie.Name;
+                MovieinDB.MovieReleaseDate = objViewModel.Movie.MovieReleaseDate;
+                MovieinDB.GenreId = objViewModel.Movie.GenreId;
+                MovieinDB.NumberInStocks = objViewModel.Movie.NumberInStocks;
+
+            }
+
+            try
+            {
+                _dbcontext.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+
+                throw;
+            }
+            
+            return RedirectToAction("Index","Movies");
+        }
+
+        public ActionResult MovieForm()
+        {
+            var Genre = _dbcontext.Genre.ToList();
+            var MovieFormViewModel = new MovieFormViewModel {
+                Genre=Genre
+            };
+            return View("MovieForm",MovieFormViewModel);
+        }
         public ActionResult Index()
         {
-            var movies = _dbcontext.Movies.ToList();
+            var movies = _dbcontext.Movies.Include(c=>c.Genre).ToList();
             return View(movies);
         }
 
@@ -76,10 +115,19 @@ namespace Vidly.Controllers
         }
 
         //learning paramater to action
-        public ActionResult edit(int id)
+        public ActionResult Edit(int id)
         {
+            var Movies = _dbcontext.Movies.SingleOrDefault(c => c.Id == id);
 
-            return Content("id=" + id);
+            if (Movies == null)
+                return HttpNotFound();
+            var viewModel = new MovieFormViewModel
+            {
+                Movie = Movies,
+                Genre = _dbcontext.Genre.ToList()
+            };
+
+            return View("MovieForm", viewModel);
         }
 
         ////learning multiple param to action old method we should not do this way we need to replace it with custom routue
