@@ -25,34 +25,64 @@ namespace Vidly.Controllers
         }
 
         [HttpPost]
-        public ActionResult Save(MovieFormViewModel objViewModel)
+        public ActionResult Save(Movie movie)
         {
-            if(objViewModel.Movie.Id==0)
+            if (movie.Id == 0)
             {
-                _dbcontext.Movies.Add(objViewModel.Movie);
+                _dbcontext.Movies.Add(movie);
             }
             else
             {
-                var MovieinDB = _dbcontext.Movies.Single(c => c.Id == objViewModel.Movie.Id);
-                MovieinDB.Name = objViewModel.Movie.Name;
-                MovieinDB.MovieReleaseDate = objViewModel.Movie.MovieReleaseDate;
-                MovieinDB.GenreId = objViewModel.Movie.GenreId;
-                MovieinDB.NumberInStocks = objViewModel.Movie.NumberInStocks;
+                var MovieinDB = _dbcontext.Movies.Single(c => c.Id == movie.Id);
+                MovieinDB.Name = movie.Name;
+                MovieinDB.MovieReleaseDate = movie.MovieReleaseDate;
+                MovieinDB.GenreId = movie.GenreId;
+                MovieinDB.NumberInStocks = movie.NumberInStocks;
 
             }
 
-            try
-            {
-                _dbcontext.SaveChanges();
-            }
-            catch (DbUpdateException ex)
-            {
+            //try
+            //{
+            _dbcontext.SaveChanges();
+            //}
+            //catch (DbUpdateException ex)
+            //{
 
-                throw;
-            }
-            
-            return RedirectToAction("Index","Movies");
+            //    throw;
+            //}
+
+            return RedirectToAction("Index", "Movies");
         }
+
+        //[HttpPost]
+        //public ActionResult Save(MovieFormViewModel objViewModel)
+        //{
+        //    if(objViewModel.Movie.Id==0)
+        //    {
+        //        _dbcontext.Movies.Add(objViewModel.Movie);
+        //    }
+        //    else
+        //    {
+        //        var MovieinDB = _dbcontext.Movies.Single(c => c.Id == objViewModel.Movie.Id);
+        //        MovieinDB.Name = objViewModel.Movie.Name;
+        //        MovieinDB.MovieReleaseDate = objViewModel.Movie.MovieReleaseDate;
+        //        MovieinDB.GenreId = objViewModel.Movie.GenreId;
+        //        MovieinDB.NumberInStocks = objViewModel.Movie.NumberInStocks;
+
+        //    }
+
+        //    //try
+        //    //{
+        //        _dbcontext.SaveChanges();
+        //    //}
+        //    //catch (DbUpdateException ex)
+        //    //{
+
+        //    //    throw;
+        //    //}
+
+        //    return RedirectToAction("Index","Movies");
+        //}
 
         public ActionResult MovieForm()
         {
