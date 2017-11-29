@@ -9,12 +9,21 @@
 @** Begining form . it is enclosed in using statement to dispose at the end  *@
 @using (Html.BeginForm("Save", "Customer"))
 {
-
+    @Html.ValidationSummary(true,"Please fix the following error! ")
     <div class="form-group">
 
         @Html.LabelFor(m => m.Customer.Name)
         @Html.TextBoxFor(m => m.Customer.Name, new { @class="form-control" })
         @Html.ValidationMessageFor(m => m.Customer.Name)
+    </div>
+
+    <div class="form-group">
+
+        @*<label for="Birthdate">DOB</label>*@
+
+        @Html.LabelFor(m => m.Customer.MembershipTypeId)
+        @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipType, "Id", "Name"), "Select Membership Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
     </div>
 
 <div class="form-group">
@@ -32,18 +41,7 @@
     @Html.CheckBoxFor(m => m.IsSubscribedToNewsletter, new { @class = "form-control" })
 
 </div>*@
-
-
-
-<div class="form-group">
-
-    @*<label for="Birthdate">DOB</label>*@
-
-    @Html.LabelFor(m => m.Customer.MembershipTypeId)
-    @Html.DropDownListFor(m => m.Customer.MembershipTypeId, new SelectList(Model.MembershipType,"Id","Name"), "Select Membership Type", new { @class = "form-control" })
-    @Html.ValidationMessageFor(m => m.Customer.MembershipTypeId)
-</div>
-
+    
 
 <div class="checkbox">
     <label>
