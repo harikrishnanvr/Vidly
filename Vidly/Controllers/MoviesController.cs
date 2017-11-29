@@ -87,8 +87,10 @@ namespace Vidly.Controllers
         public ActionResult MovieForm()
         {
             var Genre = _dbcontext.Genre.ToList();
+            var Movie = new Movie();
             var MovieFormViewModel = new MovieFormViewModel {
-                Genre=Genre
+                Genre=Genre,
+                Movie= Movie
             };
             return View("MovieForm",MovieFormViewModel);
         }
