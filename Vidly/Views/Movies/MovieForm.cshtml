@@ -6,7 +6,7 @@
 
 
 
-@if (Model.Movie == null)
+@if (Model.Movie.Id==0)
 {
     <h2>New Movie</h2>
 
@@ -25,6 +25,7 @@ else
 
     @Html.TextBoxFor(m => m.Movie.Name,new {@class="form-control" })
 
+    @Html.ValidationMessageFor(m => m.Movie.Name)
 </div>
 
 
@@ -32,7 +33,7 @@ else
     @Html.LabelFor(m => m.Movie.MovieReleaseDate)
 
     @Html.TextBoxFor(m => m.Movie.MovieReleaseDate, "{0: d MMM yyyy}", new { @class = "form-control" })
-
+    @Html.ValidationMessageFor(m => m.Movie.MovieReleaseDate)
 </div>
 
 
@@ -40,7 +41,7 @@ else
     @Html.LabelFor(m => m.Movie.GenreId)
 
     @Html.DropDownListFor(m => m.Movie.GenreId, new SelectList(Model.Genre,"id", "GenreType"),"" ,new { @class = "form-control" })
-
+    @Html.ValidationMessageFor(m => m.Movie.GenreId)
 </div>
 
 
@@ -48,11 +49,18 @@ else
     @Html.LabelFor(m => m.Movie.NumberInStocks)
 
     @Html.TextBoxFor(m => m.Movie.NumberInStocks, new { @class = "form-control" })
-
+    @Html.ValidationMessageFor(m => m.Movie.NumberInStocks)
 </div>
 
 
     @Html.HiddenFor(m => m.Movie.Id)
+    @Html.AntiForgeryToken()
+
 <button class="btn btn-primary" type="submit">Save</button>
 
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")   
 }

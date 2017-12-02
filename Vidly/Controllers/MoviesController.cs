@@ -24,6 +24,7 @@ namespace Vidly.Controllers
             _dbcontext.Dispose();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Save(Movie movie)
         {

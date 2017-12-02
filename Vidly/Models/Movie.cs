@@ -15,11 +15,14 @@ namespace Vidly.Models
         [StringLength(256)]
         public string Name { get; set; }
 
+        [Required]
         [Display(Name="Release Date")]
         public DateTime? MovieReleaseDate { get; set; }
 
         public DateTime? DateAddedTOCollection { get; set; }
 
+        [Range(1,20)]
+        [Required]
         [Display(Name="Number in Stock")]
         public int NumberInStocks { get; set; }
 

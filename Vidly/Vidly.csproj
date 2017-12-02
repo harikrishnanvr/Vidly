@@ -235,6 +235,10 @@
     <Compile Include="Migrations\201711210553038_genreidFix.Designer.cs">
       <DependentUpon>201711210553038_genreidFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712021245310_MoviesRequiredFieldAdded.cs" />
+    <Compile Include="Migrations\201712021245310_MoviesRequiredFieldAdded.Designer.cs">
+      <DependentUpon>201712021245310_MoviesRequiredFieldAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -264,6 +268,7 @@
     <Content Include="Notes\ASP.NET-MVC-Fundamentals-Exercise-Hints.pdf" />
     <Content Include="Notes\Entity-Framework-Cheat-Sheet.pdf" />
     <Content Include="Notes\Building-Forms-Cheat-Sheet.pdf" />
+    <Content Include="Notes\Implementing-Validation-Cheat-Sheet.pdf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -375,6 +380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711210553038_genreidFix.resx">
       <DependentUpon>201711210553038_genreidFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712021245310_MoviesRequiredFieldAdded.resx">
+      <DependentUpon>201712021245310_MoviesRequiredFieldAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
